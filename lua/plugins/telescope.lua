@@ -28,6 +28,11 @@ require('telescope').setup({
             case_mode = 'smart_case', -- "smart_case" | "ignore_case" | "respect_case"
         },
     },
+    pickers = {
+        colorscheme = {
+            enable_preview = true
+        }
+    }
 })
 
 local Telescope = setmetatable({}, {
@@ -57,4 +62,10 @@ vim.keymap.set('n', "<leader>sb", Telescope.buffers)
 vim.keymap.set('n', "<leader>st", Telescope.live_grep)
 
 -- Fuzzy find changed files in git
-vim.keymap.set('n', "<leader>gs", Telescope.git_status)
+vim.keymap.set('n', "<leader>go", Telescope.git_status)
+
+-- Search recent files
+vim.keymap.set('n', "<leader>sr", Telescope.oldfiles)
+
+-- Search keymaps
+vim.keymap.set('n', "<leader>sk", Telescope.keymaps)

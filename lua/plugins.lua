@@ -30,13 +30,13 @@ return require('packer').startup({
             end,
         })
 
-        use({ 'folke/tokyonight.nvim' })
+        use({ 'rrethy/nvim-base16' })
 
 
         use({
             {
                 'nvim-lualine/lualine.nvim',
-                after = 'tokyonight.nvim',
+                after = 'nvim-base16',
                 event = 'BufEnter',
                 config = function()
                     require('plugins.lualine')

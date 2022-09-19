@@ -16,16 +16,16 @@ require('lualine').setup({
         },
         lualine_c = {
             { 'filename', file_status = true },
-            { 'diagnostics' },
         },
         lualine_x = {
+            'diagnostics',
             'filetype',
             'encoding',
             'fileformat',
         },
         lualine_y = { 'progress' },
         lualine_z = {
-            { 'location', color = { gui = 'bold' } },
+            "os.date('%X')", 'data', "require'lsp-status'.status()"
         },
     },
     tabline = {

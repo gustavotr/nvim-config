@@ -3,7 +3,7 @@ local o = vim.o
 
 -- cmd('syntax on')
 -- vim.api.nvim_command('filetype plugin indent on')
-vim.cmd('colorscheme tokyonight')
+vim.cmd('colorscheme base16-tokyo-night-dark')
 
 o.termguicolors = true
 -- o.background = 'dark'
