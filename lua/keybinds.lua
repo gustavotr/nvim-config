@@ -2,6 +2,10 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
+-- Packer
+map('n', '<leader>ps', '<CMD>PackerSync<CR>')
+map('n', '<leader>pS', '<CMD>PackerStatus<CR>')
+
 -- Fix * (Keep the cursor position, don't move to next match)
 map('n', '*', '*N')
 
@@ -42,3 +46,5 @@ map('x', '<C-k>', ":move '<-2<CR>gv=gv")
 map('o', 'A', ':<C-U>normal! mzggVG<CR>`z')
 map('x', 'A', ':<C-U>normal! ggVG<CR>')
 
+-- close current buffer
+map('n', '<leader>q', '<CMD>bdelete<CR>')

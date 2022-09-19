@@ -1,7 +1,7 @@
 require('toggleterm').setup {
     size = function(term)
         if term.direction == 'horizontal' then
-            return 12
+            return 15
         elseif term.direction == 'vertiacal' then
             return 40
         end

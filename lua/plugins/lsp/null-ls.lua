@@ -6,7 +6,7 @@ nls.setup({
     sources = {
         ----------------
         -- FORMATTING --
-       ----------------
+        ----------------
         require('null-ls').builtins.formatting.trim_whitespace.with({
             filetypes = { 'text', 'zsh', 'toml', 'make', 'conf', 'tmux' },
         }),

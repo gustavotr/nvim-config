@@ -9,13 +9,13 @@ local fmt_group = vim.api.nvim_create_augroup('FORMATTING', { clear = true })
 ---@param bufnr integer
 function U.fmt_on_save(client, bufnr)
     if client.supports_method('textDocument/formatting') then
-        vim.api.nvim_clear_autocmds({ group = fmt_group, buffer = bufnr})
+        vim.api.nvim_clear_autocmds({ group = fmt_group, buffer = bufnr })
         vim.api.nvim_create_autocmd('BufWritePre', {
             group = fmt_group,
             buffer = bufnr,
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                vim.lsp.buf.formatting_seq_sync()
+                vim.lsp.buf.formatting_seq_sync(nil, 3000)
             end,
         })
     end
@@ -55,7 +55,7 @@ function U.mappings(buf)
     map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     map('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- map('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-    map('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    map('n', '<A-d>', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     map('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     map('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     -- map('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
