@@ -177,25 +177,6 @@ return require('packer').startup({
             end,
         })
 
-        use({
-            'wellle/targets.vim',
-            event = 'BufRead',
-        })
-
-        use({
-            'AndrewRadev/splitjoin.vim',
-            -- NOTE: splitjoin won't work with `BufRead` event
-            event = 'CursorHold',
-        })
-
-        use({
-            'numToStr/Buffers.nvim',
-            event = 'BufRead',
-            config = function()
-                require('plugins.buffers')
-            end,
-        })
-
         --------------
         -- Terminal --
         --------------
