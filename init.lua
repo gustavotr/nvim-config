@@ -1,12 +1,22 @@
--- Vanilla Config
-require('settings')
-require('autocmd')
-require('plugins')
-require('keybinds')
-require('customization')
-
----Pretty print lua table
-function _G.dump(...)
-    local objects = vim.tbl_map(vim.inspect, { ... })
-    print(unpack(objects))
-end
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.autocommands"
+require "user.colorscheme"
+require "user.cmp"
+require "user.telescope"
+require "user.treesitter"
+require "user.autopairs"
+require "user.comment"
+require "user.gitsigns"
+require "user.nvim-tree"
+require "user.bufferline"
+require "user.lualine"
+require "user.toggleterm"
+require "user.project"
+require "user.impatient"
+require "user.illuminate"
+require "user.indentline"
+require "user.alpha"
+require "user.lsp"
+require "user.dap"
