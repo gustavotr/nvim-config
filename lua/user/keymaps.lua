@@ -17,8 +17,7 @@ vim.g.mapleader = " "
 
 -- Normal --
 -- Save files
-keymap({"n", "i", "v"}, "<C-s>", "<cmd>update<CR>", opts)
-
+keymap({ "n", "i", "v" }, "<C-s>", "<cmd>update<CR>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -67,10 +66,6 @@ keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-
--- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
