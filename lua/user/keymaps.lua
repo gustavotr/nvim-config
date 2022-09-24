@@ -17,7 +17,7 @@ vim.g.mapleader = " "
 
 -- Normal --
 -- Save files
-keymap("n", "<C-s", "<cmd>w<CR>", opts)
+keymap({"n", "i", "v"}, "<C-s>", "<cmd>update<CR>", opts)
 
 
 -- Better window navigation
@@ -40,7 +40,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -60,7 +60,7 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
