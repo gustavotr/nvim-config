@@ -6,20 +6,14 @@ end
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
 null_ls.setup({
-	debug = false,
+	debug = true,
 	sources = {
-		null_ls.builtins.code_actions.eslint,
-		null_ls.builtins.formatting.prettier.with({
-			extra_filetypes = { "toml" },
-			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-		}),
-		null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+		null_ls.builtins.code_actions.eslint_d,
+		null_ls.builtins.formatting.eslint_d,
+		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.google_java_format,
-		null_ls.builtins.formatting.eslint,
-		null_ls.builtins.diagnostics.flake8,
 		null_ls.builtins.diagnostics.codespell,
-		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.diagnostics.jsonlint,
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.yamllint,

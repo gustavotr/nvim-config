@@ -7,6 +7,9 @@ comment.setup({
 	toggler = {
 		line = "<leader>/",
 	},
+	opleader = {
+		line = "<leader>/",
+	},
 	pre_hook = function(ctx)
 		local U = require("Comment.utils")
 
