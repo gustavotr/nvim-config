@@ -59,7 +59,8 @@ return packer.startup(function(use)
 
 	-- Colorschemes
 	use({ "folke/tokyonight.nvim" })
-	use({ "lunarvim/darkplus.nvim" })
+	--[[ use({ "lunarvim/darkplus.nvim" }) ]]
+	use({ "xiyaowong/nvim-transparent" })
 
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
@@ -96,8 +97,13 @@ return packer.startup(function(use)
 	-- DAP
 	use({ "mfussenegger/nvim-dap" })
 	use({ "rcarriga/nvim-dap-ui" })
-	use({ "ravenxrz/DAPInstall.nvim" })
-
+	use({ "theHamsta/nvim-dap-virtual-text" })
+	use({ "mxsdev/nvim-dap-vscode-js" })
+	use({
+		"microsoft/vscode-js-debug",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npm run compile",
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
