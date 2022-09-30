@@ -56,6 +56,14 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "goolord/alpha-nvim" })
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
 
 	-- Colorschemes
 	use({ "folke/tokyonight.nvim" })
@@ -90,6 +98,7 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 	})
+	use({ "nvim-treesitter/nvim-treesitter-context" })
 
 	-- Git
 	use({ "lewis6991/gitsigns.nvim" })
