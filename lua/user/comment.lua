@@ -4,10 +4,10 @@ if not status_ok then
 end
 
 comment.setup({
-	toggler = {
-		line = "<leader>/",
-	},
-	opleader = {
-		line = "<leader>/",
-	},
+	-- toggler = {
+	-- 	line = "<leader>/",
+	-- },
+	-- opleader = {
+	-- 	line = "<leader>/",
+	-- },
 })
