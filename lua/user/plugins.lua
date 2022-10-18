@@ -64,7 +64,10 @@ return packer.startup(function(use)
 		end,
 		ft = { "markdown" },
 	})
-
+	use({
+		"kkoomen/vim-doge",
+		run = ":call doge#install()",
+	})
 	-- Colorschemes
 	use({ "folke/tokyonight.nvim" })
 	--[[ use({ "lunarvim/darkplus.nvim" }) ]]
