@@ -99,7 +99,7 @@ function Scandir(directory, pattern)
 	return t
 end
 
-function loadEnvFile()
+function LoadEnvFile()
 	return coroutine.create(function(dap_run_co)
 		local cwdFiles = Scandir(vim.fn.getcwd(), "^.env")
 		if next(cwdFiles) == nil then
@@ -146,7 +146,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			program = "${file}",
 			cwd = "${workspaceFolder}",
 			console = "integratedTerminal",
-			env = loadEnvFile(),
+			env = LoadEnvFile(),
 			args = GetArgs(),
 		},
 		{
@@ -187,7 +187,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			rootPath = "${workspaceFolder}$",
 			cwd = "${workspaceFolder}",
 			console = "integratedTerminal",
-			env = loadEnvFile(),
+			env = LoadEnvFile(),
 		},
 	}
 end
