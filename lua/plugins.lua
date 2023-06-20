@@ -13,6 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy = require("lazy")
 
+local opts = {}
+
 local plugins = {
 	{
 		"folke/which-key.nvim",
@@ -27,7 +29,18 @@ local plugins = {
 		end,
 	},
 	{ "nvim-lua/plenary.nvim" },
-	{ "windwp/nvim-autopairs" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("configs.indentline")
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("configs.autopairs")
+		end,
+	},
 	{ "numToStr/Comment.nvim" },
 	{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	{
@@ -41,17 +54,29 @@ local plugins = {
 	},
 	{
 		"akinsho/bufferline.nvim",
+		config = function()
+			require("configs.bufferline")
+		end,
 	},
 	{ "moll/vim-bbye" },
-	{ "nvim-lualine/lualine.nvim" },
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("configs.lualine")
+		end,
+	},
 	{
 		"akinsho/toggleterm.nvim",
 		config = function()
 			require("configs.toggleterm")
 		end,
 	},
-	{ "ahmedkhalf/project.nvim" },
-	{ "lewis6991/impatient.nvim" },
+	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("configs.project")
+		end,
+	},
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{
 		"goolord/alpha-nvim",
@@ -61,15 +86,18 @@ local plugins = {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		setup = function()
+		build = "cd app && npm install",
+		config = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
 	},
 	{
 		"kkoomen/vim-doge",
-		run = ":call doge#install()",
+		build = ":call doge#install()",
+		config = function()
+			vim.g.doge_mapping = "<leader>D"
+		end,
 	},
 	-- Colorschemes
 	--{ "folke/tokyonight.nvim" },
@@ -81,12 +109,19 @@ local plugins = {
 	},
 
 	-- cmp plugins
-	-- { "hrsh7th/nvim-cmp" },         -- The completion plugin
-	-- { "hrsh7th/cmp-buffer" },       -- buffer completions
-	-- { "hrsh7th/cmp-path" },         -- path completions
-	-- { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-	-- { "hrsh7th/cmp-nvim-lsp" },
-	-- { "hrsh7th/cmp-nvim-lua" },
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{ "hrsh7th/cmp-buffer" }, -- buffer completions
+			{ "hrsh7th/cmp-path" }, -- path completions
+			{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+		},
+		config = function()
+			require("configs.cmp")
+		end,
+	}, -- The completion plugin
 
 	-- snippets
 	{ "L3MON4D3/LuaSnip" }, --snippet engine
@@ -115,7 +150,12 @@ local plugins = {
 			require("configs.illuminate")
 		end,
 	},
-	-- { "folke/trouble.nvim" },
+	{
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup()
+		end,
+	},
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
@@ -125,29 +165,49 @@ local plugins = {
 	},
 
 	-- Telescope
-	{ "nvim-telescope/telescope.nvim" },
+	{
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("configs.telescope")
+		end,
+	},
 
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
+			"nvim-treesitter/nvim-treesitter-context",
 		},
+		config = function()
+			require("configs.treesitter")
+		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter-context" },
 
 	-- Git
-	{ "lewis6991/gitsigns.nvim" },
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("configs.gitsigns")
+		end,
+	},
 
 	-- DAP
-	{ "mfussenegger/nvim-dap" },
-	{ "rcarriga/nvim-dap-ui" },
-	{ "theHamsta/nvim-dap-virtual-text" },
-	{ "mxsdev/nvim-dap-vscode-js" },
 	{
-		"microsoft/vscode-js-debug",
-		opt = true,
-		run = "npm install --legacy-peer-deps && npm run compile",
+		"mfussenegger/nvim-dap",
+		event = "BufRead",
+		dependencies = {
+			{ "rcarriga/nvim-dap-ui" },
+			{ "theHamsta/nvim-dap-virtual-text" },
+			{ "mxsdev/nvim-dap-vscode-js" },
+			{
+				"microsoft/vscode-js-debug",
+				build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+			},
+		},
+		config = function()
+			require("configs.dap")
+		end,
 	},
 }
 

@@ -59,16 +59,18 @@ keymap("v", ">", ">gv", opts)
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
--- Telescope
+-- Find
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true, desc = "Find files" })
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", { silent = true, desc = "Find word" })
 keymap("n", "<leader>fp", ":Telescope projects<CR>", { silent = true, desc = "Find projects" })
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true, desc = "Find buffers" })
 
+
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { silent = true, desc = "Lazy Git" })
+keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { silent = true, desc = "Git status" })
 
--- DAP
+-- Debug
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { silent = true, desc = "Breakpoint" })
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { silent = true, desc = "Continue" })
 keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { silent = true, desc = "Step Into" })
@@ -78,3 +80,6 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", { silent = 
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { silent = true, desc = "Run Last" })
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", { silent = true, desc = "UI Toggle" })
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", { silent = true, desc = "Terminate" })
+
+-- Toggle
+keymap("n", "<leader>tt", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble" })
