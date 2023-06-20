@@ -1,5 +1,6 @@
 require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
 
 mason_lspconfig.setup({
 	ensure_installed = {
@@ -10,6 +11,7 @@ mason_lspconfig.setup({
 		"eslint",
 		"yamlls",
 		"jsonls",
+		"gopls",
 	},
 	automatic_installation = true,
 })
@@ -54,6 +56,19 @@ mason_lspconfig.setup_handlers({
 				end
 				illuminate.on_attach(client)
 			end,
+		})
+	end,
+	["gopls"] = function()
+		lspconfig.gopls.setup({
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					usePlaceholders = true,
+					analyses = {
+						unusedparams = true,
+					},
+				},
+			},
 		})
 	end,
 })
