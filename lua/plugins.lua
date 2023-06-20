@@ -30,18 +30,17 @@ local plugins = {
 	},
 	{ "nvim-lua/plenary.nvim" },
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("configs.indentline")
-		end,
-	},
-	{
 		"windwp/nvim-autopairs",
 		config = function()
 			require("configs.autopairs")
 		end,
 	},
-	{ "numToStr/Comment.nvim" },
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	},
 	{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -77,7 +76,13 @@ local plugins = {
 			require("configs.project")
 		end,
 	},
-	{ "lukas-reineke/indent-blankline.nvim" },
+	{
+		"echasnovski/mini.nvim",
+		version = false,
+		config = function()
+			require("mini.indentscope").setup()
+		end,
+	},
 	{
 		"goolord/alpha-nvim",
 		config = function()
@@ -207,6 +212,13 @@ local plugins = {
 		},
 		config = function()
 			require("configs.dap")
+		end,
+	},
+
+	{
+		"Shatur/neovim-session-manager",
+		config = function()
+			require("configs.session-manager")
 		end,
 	},
 }

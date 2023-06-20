@@ -54,7 +54,9 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Plugins --
+-- Comment --
+keymap("n", "<leader>/", "gcc", { desc = "Comment", remap = true })
+keymap("x", "<leader>/", "gc", { desc = "Comment", remap = true })
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
@@ -64,7 +66,6 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true, desc = "
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", { silent = true, desc = "Find word" })
 keymap("n", "<leader>fp", ":Telescope projects<CR>", { silent = true, desc = "Find projects" })
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true, desc = "Find buffers" })
-
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { silent = true, desc = "Lazy Git" })
