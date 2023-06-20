@@ -66,6 +66,7 @@ local plugins = {
   },
   {
     "akinsho/toggleterm.nvim",
+    tag = "*",
     config = function()
       require("configs.toggleterm")
     end,
@@ -128,8 +129,8 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "hrsh7th/cmp-buffer" },    -- buffer completions
-      { "hrsh7th/cmp-path" },      -- path completions
+      { "hrsh7th/cmp-buffer" },       -- buffer completions
+      { "hrsh7th/cmp-path" },         -- path completions
       { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
@@ -140,7 +141,7 @@ local plugins = {
   }, -- The completion plugin
 
   -- snippets
-  { "L3MON4D3/LuaSnip" },            --snippet engine
+  { "L3MON4D3/LuaSnip" },             --snippet engine
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
 
   -- LSP
@@ -148,7 +149,7 @@ local plugins = {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       { "williamboman/mason.nvim" }, -- simple to use language server installer
-      { "neovim/nvim-lspconfig" }, -- enable LSP
+      { "neovim/nvim-lspconfig" },   -- enable LSP
     },
     config = function()
       require("configs.lsp")
@@ -237,14 +238,6 @@ local plugins = {
   },
   {
     "sindrets/diffview.nvim",
-    keys = {
-      { "<leader>gvo", ":DiffviewOpen<cr>",        desc = "Diffview Open" },
-      { "<leader>gvc", ":DiffviewClose<cr>",       desc = "Diffview Close" },
-      { "<leader>gvf", ":DiffviewFocusFiles<cr>",  desc = "Diffview Focus files" },
-      { "<leader>gvh", ":DiffviewFileHistory<cr>", desc = "Diffview File history" },
-      { "<leader>gvt", ":DiffviewToggleFiles<cr>", desc = "Diffview Toggle files" },
-      { "<leader>gvr", ":DiffviewRefresh<cr>",     desc = "Diffview Refresh" },
-    },
   },
 }
 
