@@ -77,10 +77,13 @@ local plugins = {
 		end,
 	},
 	{
-		"echasnovski/mini.nvim",
-		version = false,
+		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require("mini.indentscope").setup()
+			require("indent_blankline").setup({
+				space_char_blankline = " ",
+				show_current_context = true,
+				show_current_context_start = true,
+			})
 		end,
 	},
 	{
@@ -105,11 +108,19 @@ local plugins = {
 		end,
 	},
 	-- Colorschemes
-	--{ "folke/tokyonight.nvim" },
 	{
-		"tanvirtin/monokai.nvim",
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{
+		"loctvl842/monokai-pro.nvim",
+		lazy = false,
+		priority = 1000,
+		keys = { { "<leader>c", "<cmd>MonokaiProSelect<cr>", desc = "Select Moonokai pro filter" } },
 		config = function()
-			require("monokai").setup({ palette = require("monokai").pro })
+			require("configs.monokai")
 		end,
 	},
 
