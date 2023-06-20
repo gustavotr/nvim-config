@@ -41,6 +41,7 @@
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-doge": { "branch": "master", "commit": "b854c87882d7cbba88ea79840c490f0a20f04e48" },
   "vim-illuminate": { "branch": "master", "commit": "a2907275a6899c570d16e95b9db5fd921c167502" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" },
   "vscode-js-debug": { "branch": "main", "commit": "8fa24a71b84043a3c7065e4c64e1a9541ec518b2" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" }
 }

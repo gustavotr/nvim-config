@@ -19,11 +19,11 @@ vim.g.mapleader = " "
 -- Save files
 keymap({ "n", "i", "v" }, "<C-s>", "<cmd>update<CR>", opts)
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- Navigation
+keymap({ "n", "x" }, "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "window left" })
+keymap({ "n", "x" }, "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "window right" })
+keymap({ "n", "x" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "window down" })
+keymap({ "n", "x" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "window up" })
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -73,6 +73,12 @@ keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { silent = true, desc
 
 -- Debug
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { silent = true, desc = "Breakpoint" })
+keymap(
+  "n",
+  "<Leader>dB",
+  "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+  { silent = true, desc = "Breakpoint condition" }
+)
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { silent = true, desc = "Continue" })
 keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { silent = true, desc = "Step Into" })
 keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", { silent = true, desc = "Step Over" })
@@ -81,6 +87,20 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", { silent = 
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { silent = true, desc = "Run Last" })
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", { silent = true, desc = "UI Toggle" })
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", { silent = true, desc = "Terminate" })
+keymap("n", "<leader>dh", "<cmd>lua require'dap.ui.widgets'.hover()<CR>")
+keymap(
+  "n",
+  "<Leader>dl",
+  "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+  { silent = true, desc = "Breakpoint log" }
+)
+keymap("n", "<Leader>dL", "<Cmd>lua require'dap'.run_last()<CR>", { silent = true, desc = "Run last" })
 
 -- Toggle
-keymap("n", "<leader>tt", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble" })
+keymap(
+  "n",
+  "<leader>tt",
+  "<cmd>TroubleToggle document_diagnostics<cr>",
+  { silent = true, noremap = true, desc = "Toggle Trouble Doc" }
+)
+keymap("n", "<leader>tT", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble" })

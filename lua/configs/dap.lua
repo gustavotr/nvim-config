@@ -38,23 +38,6 @@ dapui.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<CR>")
-vim.keymap.set("n", "<leader>dh", "<cmd>lua require'dap.ui.widgets'.hover()<CR>")
-
-vim.keymap.set("n", "<leader>dc", "<Cmd>lua require'dap'.continue()<CR>")
-vim.keymap.set("n", "<leader>do", "<Cmd>lua require'dap'.step_over()<CR>")
-vim.keymap.set("n", "<leader>di", "<Cmd>lua require'dap'.step_into()<CR>")
-vim.keymap.set("n", "<leader>dO", "<Cmd>lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<Leader>db", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<Leader>dB", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set(
-	"n",
-	"<Leader>dlp",
-	"<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>"
-)
-vim.keymap.set("n", "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
-vim.keymap.set("n", "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
-
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -76,66 +59,9 @@ end
 
 dap_vscode.setup({
 	-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-	debugger_path = os.getenv("HOME") .. "/.local/share/nvim/site/pack/packer/opt/vscode-js-debug", -- Path to vscode-js-debug installation.
+	debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
 	adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
 })
-
-require("string")
-
-function Scandir(directory, pattern)
-	local i, t, popen = 0, {}, io.popen
-	local pfile = popen('ls -a "' .. directory .. '"')
-	if pfile ~= nil then
-		i = i + 1
-		t[i] = ""
-		for filename in pfile:lines() do
-			if string.match(filename, pattern) ~= nil then
-				i = i + 1
-				t[i] = filename
-			end
-		end
-		pfile:close()
-	end
-	return t
-end
-
-function LoadEnvFile()
-	return coroutine.create(function(dap_run_co)
-		local cwdFiles = Scandir(vim.fn.getcwd(), "^.env")
-		if next(cwdFiles) == nil then
-			return coroutine.resume(dap_run_co, {})
-		end
-		vim.ui.select(cwdFiles, {
-			prompt = "Select an env file: ",
-		}, function(filename)
-			local envVars = {}
-			if filename ~= "" then
-				local file = io.open(filename, "r")
-				if file then
-					for line in file:lines() do
-						local k = string.match(line, "([^%s]+)=")
-						local v = string.match(line, '="?([^("$)]+)')
-						if k ~= nil then
-							envVars[k] = v
-						end
-					end
-				end
-			end
-			coroutine.resume(dap_run_co, envVars)
-		end)
-	end)
-end
-
-function GetArgs()
-	return coroutine.create(function(dap_run_co)
-		vim.ui.input({
-			prompt = "Args: ",
-			default = "",
-		}, function(input)
-			coroutine.resume(dap_run_co, input)
-		end)
-	end)
-end
 
 for _, language in ipairs({ "typescript", "javascript" }) do
 	require("dap").configurations[language] = {
@@ -145,18 +71,16 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			name = "Launch file",
 			program = "${file}",
 			cwd = "${workspaceFolder}",
-			console = "integratedTerminal",
-			env = LoadEnvFile(),
-			args = GetArgs(),
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
 		},
 		{
 			name = "Attach",
 			type = "pwa-node",
 			request = "attach",
-			cwd = vim.fn.getcwd(),
+			cwd = "${workspaceFolder}",
 			sourceMaps = true,
 			protocol = "inspector",
-			skipFiles = { "<node_internals>/**/*.js" },
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
 		},
 		{
 			type = "pwa-node",
@@ -164,7 +88,23 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			name = "Attach to process",
 			processId = require("dap.utils").pick_process,
 			cwd = "${workspaceFolder}",
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+		},
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Debug Jest Tests",
+			-- trace = true, -- include debugger info
+			runtimeExecutable = "node",
+			runtimeArgs = {
+				"./node_modules/jest/bin/jest.js",
+				"--runInBand",
+			},
+			rootPath = "${workspaceFolder}",
+			cwd = "${workspaceFolder}",
 			console = "integratedTerminal",
+			internalConsoleOptions = "neverOpen",
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
 		},
 		{
 			type = "pwa-node",
@@ -186,8 +126,40 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			},
 			rootPath = "${workspaceFolder}$",
 			cwd = "${workspaceFolder}",
-			console = "integratedTerminal",
-			env = LoadEnvFile(),
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+		},
+	}
+end
+
+for _, language in ipairs({ "typescriptreact", "javascriptreact" }) do
+	require("dap").configurations[language] = {
+		{
+			name = "Attach",
+			type = "pwa-node",
+			request = "attach",
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
+			protocol = "inspector",
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+		},
+		{
+			type = "pwa-chrome",
+			name = "Attach - Remote Debugging",
+			request = "attach",
+			program = "${file}",
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
+			protocol = "inspector",
+			port = 9222,
+			webRoot = "${workspaceFolder}",
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
+		},
+		{
+			type = "pwa-chrome",
+			name = "Launch Chrome",
+			request = "launch",
+			url = "http://localhost:3000",
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
 		},
 	}
 end

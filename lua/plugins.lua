@@ -232,6 +232,9 @@ local plugins = {
 			require("configs.session-manager")
 		end,
 	},
+	{
+		"christoomey/vim-tmux-navigator",
+	},
 }
 
 lazy.setup(plugins, opts)
