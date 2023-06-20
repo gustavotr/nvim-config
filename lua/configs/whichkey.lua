@@ -9,9 +9,12 @@ local wk = require("which-key")
 -- and hide <leader>1
 
 wk.register({
-	f = {
-		name = "+find", -- optional group name
-		-- f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-		-- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = false }, -- additional options for creating the keymap
-	},
+  f = {
+    name = "+find", -- optional group name
+    -- f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
+    -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = false }, -- additional options for creating the keymap
+  },
+  ["gv"] = {
+    name = "+diffview",
+  },
 }, { prefix = "<leader>" })

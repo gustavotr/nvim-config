@@ -42,14 +42,6 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true, desc = "Clear H
 keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", { silent = true, desc = "Close" })
 keymap("n", "<leader>bo", ":%bd|e#<CR>", { silent = true, desc = "Close others" })
 
--- Better paste
-keymap("v", "p", '"_dP', opts)
-
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-
--- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
