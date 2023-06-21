@@ -36,30 +36,33 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+local on_attach = function(client, bufnr)
+	if client.name == "tsserver" then
+		client.server_capabilities.document_formatting = false
+	end
+
+	if client.name == "sumneko_lua" then
+		client.server_capabilities.document_formatting = false
+	end
+
+	lsp_keymaps(bufnr)
+
+	local status_ok, illuminate = pcall(require, "illuminate")
+	if not status_ok then
+		return
+	end
+	illuminate.on_attach(client)
+end
+
 mason_lspconfig.setup_handlers({
 	function(server_name)
 		require("lspconfig")[server_name].setup({
-			on_attach = function(client, bufnr)
-				if client.name == "tsserver" then
-					client.server_capabilities.document_formatting = false
-				end
-
-				if client.name == "sumneko_lua" then
-					client.server_capabilities.document_formatting = false
-				end
-
-				lsp_keymaps(bufnr)
-
-				local status_ok, illuminate = pcall(require, "illuminate")
-				if not status_ok then
-					return
-				end
-				illuminate.on_attach(client)
-			end,
+			on_attach = on_attach,
 		})
 	end,
 	["gopls"] = function()
 		lspconfig.gopls.setup({
+			on_attach = on_attach,
 			settings = {
 				gopls = {
 					completeUnimported = true,
