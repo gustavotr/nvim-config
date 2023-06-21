@@ -7,18 +7,18 @@ local wk = require("which-key")
 --  * <leader>fn new file
 --  * <leader>fe edit file
 -- and hide <leader>1
-wk.setup({
-  defaults,
-})
 
 wk.register({
-  f = {
-    name = "+find", -- optional group name
-  },
-  g = {
-    name = "+git",
-    v = {
-      name = "+diffview",
-    },
-  },
+	f = {
+		name = "+find", -- optional group name
+	},
+	g = {
+		name = "+git",
+		v = {
+			name = "+diffview",
+		},
+	},
+	l = {
+		name = "+lsp",
+	},
 }, { prefix = "<leader>" })

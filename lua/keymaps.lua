@@ -105,3 +105,6 @@ keymap("n", "<leader>tT", "<cmd>TroubleToggle<cr>", { silent = true, noremap = t
 keymap({ "n", "x" }, "<A-1>", ":ToggleTerm direction=horizontal<cr>")
 keymap({ "n", "x" }, "<A-2>", ":ToggleTerm direction=vertical<cr>")
 keymap({ "n", "x" }, "<A-3>", ":ToggleTerm direction=float<cr>")
+
+-- LSP
+keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { silent = true, noremap = true, desc = "Rename" })
