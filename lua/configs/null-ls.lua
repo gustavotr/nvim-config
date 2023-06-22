@@ -25,11 +25,13 @@ null_ls.setup({
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.goimports_reviser,
     null_ls.builtins.formatting.golines,
+    null_ls.builtins.formatting.prismaFmt,
     null_ls.builtins.diagnostics.codespell,
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.diagnostics.jsonlint,
     null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.tsc,
   },
   on_attach = on_attach,
 })
