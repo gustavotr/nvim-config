@@ -129,8 +129,8 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "hrsh7th/cmp-buffer" },       -- buffer completions
-      { "hrsh7th/cmp-path" },         -- path completions
+      { "hrsh7th/cmp-buffer" },    -- buffer completions
+      { "hrsh7th/cmp-path" },      -- path completions
       { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
@@ -141,7 +141,7 @@ local plugins = {
   }, -- The completion plugin
 
   -- snippets
-  { "L3MON4D3/LuaSnip" },             --snippet engine
+  { "L3MON4D3/LuaSnip" },            --snippet engine
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
 
   -- LSP
@@ -149,7 +149,7 @@ local plugins = {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       { "williamboman/mason.nvim" }, -- simple to use language server installer
-      { "neovim/nvim-lspconfig" },   -- enable LSP
+      { "neovim/nvim-lspconfig" }, -- enable LSP
     },
     config = function()
       require("configs.lsp")
@@ -238,6 +238,13 @@ local plugins = {
   },
   {
     "sindrets/diffview.nvim",
+  },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("configs.rest")
+    end,
   },
 }
 
