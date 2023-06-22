@@ -26,21 +26,21 @@ keymap({ "n", "x" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "window down
 keymap({ "n", "x" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "window up" })
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
+keymap("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
+keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
+keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true, desc = "Clear Highlights" })
 
 -- Close buffers
 keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", { silent = true, desc = "Close" })
-keymap("n", "<leader>bo", ":%bd|e#<CR>", { silent = true, desc = "Close others" })
+keymap("n", "<leader>bo", "<cmd>bd|e#<CR>", { silent = true, desc = "Close others" })
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -51,23 +51,23 @@ keymap("n", "<leader>/", "gcc", { desc = "Comment", remap = true })
 keymap("x", "<leader>/", "gc", { desc = "Comment", remap = true })
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
 -- Find
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true, desc = "Find files" })
-keymap("n", "<leader>fw", ":Telescope live_grep<CR>", { silent = true, desc = "Find word" })
-keymap("n", "<leader>fp", ":Telescope projects<CR>", { silent = true, desc = "Find projects" })
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true, desc = "Find buffers" })
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { silent = true, desc = "Find files" })
+keymap("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { silent = true, desc = "Find word" })
+keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", { silent = true, desc = "Find projects" })
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { silent = true, desc = "Find buffers" })
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { silent = true, desc = "Lazy Git" })
 keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { silent = true, desc = "Git status" })
-keymap("n", "<leader>gvo", ":DiffviewOpen<cr>", { desc = "Diffview Open" })
-keymap("n", "<leader>gvc", ":DiffviewClose<cr>", { desc = "Diffview Close" })
-keymap("n", "<leader>gvf", ":DiffviewFocusFiles<cr>", { desc = "Diffview Focus files" })
-keymap("n", "<leader>gvh", ":DiffviewFileHistory<cr>", { desc = "Diffview File history" })
-keymap("n", "<leader>gvt", ":DiffviewToggleFiles<cr>", { desc = "Diffview Toggle files" })
-keymap("n", "<leader>gvr", ":DiffviewRefresh<cr>", { desc = "Diffview Refresh" })
+keymap("n", "<leader>gvo", "<cmd>DiffviewOpen<cr>", { desc = "Diffview Open" })
+keymap("n", "<leader>gvc", "<cmd>DiffviewClose<cr>", { desc = "Diffview Close" })
+keymap("n", "<leader>gvf", "<cmd>DiffviewFocusFiles<cr>", { desc = "Diffview Focus files" })
+keymap("n", "<leader>gvh", "<cmd>DiffviewFileHistory<cr>", { desc = "Diffview File history" })
+keymap("n", "<leader>gvt", "<cmd>DiffviewToggleFiles<cr>", { desc = "Diffview Toggle files" })
+keymap("n", "<leader>gvr", "<cmd>DiffviewRefresh<cr>", { desc = "Diffview Refresh" })
 
 -- Debug
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { silent = true, desc = "Breakpoint" })
@@ -102,9 +102,9 @@ keymap(
 	{ silent = true, noremap = true, desc = "Toggle Trouble Doc" }
 )
 keymap("n", "<leader>tT", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble" })
-keymap({ "n", "x" }, "<A-1>", ":ToggleTerm direction=horizontal<cr>")
-keymap({ "n", "x" }, "<A-2>", ":ToggleTerm direction=vertical<cr>")
-keymap({ "n", "x" }, "<A-3>", ":ToggleTerm direction=float<cr>")
+keymap({ "n", "t" }, "<A-1>", "<cmd>ToggleTerm direction=horizontal<cr>")
+keymap({ "n", "t" }, "<A-2>", "<cmd>ToggleTerm direction=vertical<cr>")
+keymap({ "n", "t" }, "<A-3>", "<cmd>ToggleTerm direction=float<cr>")
 
 -- LSP
 keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { silent = true, noremap = true, desc = "Rename" })
