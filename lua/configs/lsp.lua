@@ -8,7 +8,6 @@ mason_lspconfig.setup({
 		"rust_analyzer",
 		"tsserver",
 		"angularls",
-		"eslint",
 		"yamlls",
 		"jsonls",
 		"gopls",
