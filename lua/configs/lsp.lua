@@ -12,6 +12,7 @@ mason_lspconfig.setup({
 		"yamlls",
 		"jsonls",
 		"gopls",
+		"phpactor",
 	},
 	automatic_installation = true,
 })
@@ -72,6 +73,13 @@ mason_lspconfig.setup_handlers({
 					},
 				},
 			},
+		})
+	end,
+
+	["phpactor"] = function()
+		lspconfig.phpactor.setup({
+			on_attach = on_attach,
+			root_dir = lspconfig.util.root_pattern("composer.json", ".git", "wp-config.php"),
 		})
 	end,
 })
