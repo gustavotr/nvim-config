@@ -40,7 +40,10 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true, desc = "Clear H
 
 -- Close buffers
 keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", { silent = true, desc = "Close" })
-keymap("n", "<leader>bo", "<cmd>%bd|e#<CR>", { silent = true, desc = "Close others" })
+keymap("n", "<leader>bo", function()
+	vim.cmd.BufferLineCloseLeft()
+	vim.cmd.BufferLineCloseRight()
+end, { silent = true, desc = "Close others" })
 keymap("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { silent = true, desc = "Close right" })
 keymap("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { silent = true, desc = "Close left" })
 
