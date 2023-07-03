@@ -7,6 +7,9 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
+-- Doge plugin
+vim.g.doge_mapping = "<leader>D"
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",

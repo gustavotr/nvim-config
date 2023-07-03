@@ -104,9 +104,7 @@ local plugins = {
 	{
 		"kkoomen/vim-doge",
 		build = ":call doge#install()",
-		config = function()
-			vim.g.doge_mapping = "<leader>D"
-		end,
+		event = "BufRead",
 	},
 	-- Colorschemes
 	{
