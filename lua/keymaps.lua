@@ -79,7 +79,8 @@ keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { silent = true, desc
 keymap("n", "<leader>gvo", "<cmd>DiffviewOpen<cr>", { desc = "Diffview Open" })
 keymap("n", "<leader>gvc", "<cmd>DiffviewClose<cr>", { desc = "Diffview Close" })
 keymap("n", "<leader>gvf", "<cmd>DiffviewFocusFiles<cr>", { desc = "Diffview Focus files" })
-keymap("n", "<leader>gvh", "<cmd>DiffviewFileHistory<cr>", { desc = "Diffview File history" })
+keymap("n", "<leader>gvh", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffview Current File history" })
+keymap("n", "<leader>gvH", "<cmd>DiffviewFileHistory<cr>", { desc = "Diffview File history" })
 keymap("n", "<leader>gvt", "<cmd>DiffviewToggleFiles<cr>", { desc = "Diffview Toggle files" })
 keymap("n", "<leader>gvr", "<cmd>DiffviewRefresh<cr>", { desc = "Diffview Refresh" })
 
