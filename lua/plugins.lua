@@ -216,7 +216,7 @@ local plugins = {
       { "mxsdev/nvim-dap-vscode-js" },
       {
         "microsoft/vscode-js-debug",
-        build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
+        build = "npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
       },
     },
     config = function()
@@ -279,6 +279,14 @@ local plugins = {
           iferr = "iferr",
         },
       })
+    end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
     end,
   },
 }
