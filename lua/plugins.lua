@@ -216,7 +216,7 @@ local plugins = {
       { "mxsdev/nvim-dap-vscode-js" },
       {
         "microsoft/vscode-js-debug",
-        build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+        build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
       },
     },
     config = function()
