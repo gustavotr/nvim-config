@@ -12,6 +12,7 @@ mason_lspconfig.setup({
 		"jsonls",
 		"gopls",
 		"phpactor",
+		"tailwindcss",
 	},
 	automatic_installation = true,
 })
