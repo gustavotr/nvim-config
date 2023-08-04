@@ -70,6 +70,9 @@ keymap("n", "<leader>o", "<cmd>SymbolsOutline<CR>", opts)
 -- Find
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { silent = true, desc = "Find files" })
 keymap("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { silent = true, desc = "Find word" })
+keymap("n", "<leader>fW", function()
+	require("telescope.builtin").live_grep({ cwd = require("telescope.utils").buffer_dir() })
+end, { silent = true, desc = "Find word on folder" })
 keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", { silent = true, desc = "Find projects" })
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { silent = true, desc = "Find buffers" })
 
