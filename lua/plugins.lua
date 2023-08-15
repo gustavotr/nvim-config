@@ -301,6 +301,9 @@ local plugins = {
 			require("lsp_signature").setup(opts)
 		end,
 	},
+	{
+		"ThePrimeagen/harpoon",
+	},
 }
 
 lazy.setup(plugins, opts)
