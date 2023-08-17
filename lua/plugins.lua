@@ -304,6 +304,12 @@ local plugins = {
 	{
 		"ThePrimeagen/harpoon",
 	},
+	{
+		"rgroli/other.nvim",
+		config = function()
+			require("configs.other")
+		end,
+	},
 }
 
 lazy.setup(plugins, opts)
