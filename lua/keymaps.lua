@@ -28,6 +28,12 @@ keymap({ "n", "x" }, "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "window rig
 keymap({ "n", "x" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "window down" })
 keymap({ "n", "x" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "window up" })
 
+-- Move lines
+keymap({ "n" }, "<A-k>", "<cmd>m-2<CR>", { desc = "move line up" })
+keymap({ "n" }, "<A-j>", "<cmd>m+<CR>", { desc = "move line down" })
+keymap({ "x" }, "<A-k>", ":m '<-2<CR>gv=gv", { desc = "move lines up" })
+keymap({ "x" }, "<A-j>", ":m '>+1<CR>gv=gv", { desc = "move lines down" })
+
 -- Resize with arrows
 keymap("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
 keymap("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
