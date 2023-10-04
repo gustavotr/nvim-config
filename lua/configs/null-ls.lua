@@ -22,7 +22,6 @@ end
 null_ls.setup({
 	debug = true,
 	sources = {
-		null_ls.builtins.code_actions.eslint_d,
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.gofumpt,
@@ -32,7 +31,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.prismaFmt,
 		null_ls.builtins.formatting.phpcsfixer,
 		null_ls.builtins.diagnostics.codespell,
-		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.diagnostics.jsonlint,
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.yamllint,

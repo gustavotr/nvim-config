@@ -13,6 +13,7 @@ mason_lspconfig.setup({
 		"gopls",
 		"phpactor",
 		"tailwindcss",
+		"eslint",
 	},
 	automatic_installation = true,
 })
